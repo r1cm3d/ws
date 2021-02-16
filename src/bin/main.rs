@@ -1,7 +1,7 @@
-use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
-use std::{fs, thread};
+use std::net::{TcpListener, TcpStream};
 use std::time::Duration;
+use std::{fs, thread};
 use ws::ThreadPool;
 
 fn main() {
@@ -23,7 +23,7 @@ fn handle_connection(mut stream: TcpStream) {
     stream.read(&mut buffer).unwrap();
 
     let get = b"GET / HTTP/1.1\r\n";
-    let sleep  = b"GET /sleep HTTP/1.1\r\n";
+    let sleep = b"GET /sleep HTTP/1.1\r\n";
     let hello = ("HTTP/1.1 200 OK\r\n\r\n", "hello.html");
 
     let (status_line, filename) = if buffer.starts_with(get) {
